@@ -1,5 +1,5 @@
 # Ignore build folders
-jdoc/
+# jdoc/
 bin/
 
 # Ignore config files
