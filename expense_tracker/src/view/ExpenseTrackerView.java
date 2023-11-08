@@ -33,7 +33,7 @@ public class ExpenseTrackerView extends JFrame {
 
   public ExpenseTrackerView() {
     setTitle("Expense Tracker"); // Set title
-    setSize(600, 400); // Make GUI larger
+    setSize(800, 400); // Make GUI larger
 
     String[] columnNames = {"serial", "Amount", "Category", "Date"};
     this.model = new DefaultTableModel(columnNames, 0);
@@ -91,7 +91,7 @@ public class ExpenseTrackerView extends JFrame {
     add(buttonPanel, BorderLayout.SOUTH);
   
     // Set frame properties
-    setSize(600, 400); // Increase the size for better visibility
+    setSize(800, 400); // Increase the size for better visibility
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   
