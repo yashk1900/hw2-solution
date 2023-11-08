@@ -21,6 +21,7 @@ public class ExpenseTrackerModel {
     transactions.add(t);
   }
 
+  // Perform transaction removal from list
   public void removeTransaction(Transaction t) {
     transactions.remove(t);
   }

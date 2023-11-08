@@ -59,13 +59,13 @@ public class ExpenseTrackerController {
       Transaction t = transactions.get(index);
 
       // PRINT THE SELECTED TRANSACTION
-      System.out.println("Selected Transaction:");
-      System.out.println("Amount: "+ t.getAmount());
-      System.out.println("Category: "+ t.getCategory());
-      System.out.println("Timestamp: "+ t.getTimestamp());
+      // System.out.println("Selected Transaction:");
+      // System.out.println("Amount: "+ t.getAmount());
+      // System.out.println("Category: "+ t.getCategory());
+      // System.out.println("Timestamp: "+ t.getTimestamp());
       model.removeTransaction(t);
       refresh();
-      view.highlightRows(null);
+      view.highlightRows(null); // adding reset filter functionality
     } catch (Exception e) {
       // TODO: handle exception
       System.out.println("Exception while deleting the transaction: "+e.getMessage());

@@ -21,11 +21,8 @@ public class ExpenseTrackerApp {
     ExpenseTrackerView view = new ExpenseTrackerView();
     ExpenseTrackerController controller = new ExpenseTrackerController(model, view);
     
-
     // Initialize view
     view.setVisible(true);
-
-
 
     // Handle add transaction button clicks
     view.getAddTransactionBtn().addActionListener(e -> {
@@ -42,6 +39,7 @@ public class ExpenseTrackerApp {
       }
     });
 
+    //Adding action listeners to remove transaction button to follow through with the intended on click functionality
     view.getRemoveTransactionBtn().addActionListener(e -> {
       // GET THE SELECTED DATA
       int index = view.getSelectedRowIndex();
@@ -52,8 +50,8 @@ public class ExpenseTrackerApp {
       }
     });
 
+    //Add filter clear/reset functionality to 'clear filter' button
     view.getClearFilterButton().addActionListener(e->{
-      
       view.highlightRows(null);
     });
 

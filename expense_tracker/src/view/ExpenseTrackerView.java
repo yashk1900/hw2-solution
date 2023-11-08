@@ -43,7 +43,8 @@ public class ExpenseTrackerView extends JFrame {
     transactionsTable = new JTable(model);
 
     addTransactionBtn = new JButton("Add Transaction");
-    // CAN ADD ? TIP IN THE UI SAYING ONLY 1 TXN DELETION SUPPORTED AT A TIME
+
+    //UI remove button
     removeTransactionBtn = new JButton("Remove Selected Transaction");
 
     // Create UI components
