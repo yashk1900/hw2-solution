@@ -46,7 +46,7 @@ public class ExpenseTrackerView extends JFrame {
 
     //UI remove button
     removeTransactionBtn = new JButton("Remove Selected Transaction");
-    removeTransactionBtn.setToolTipText("Please select a transaction and click on this button to remove 1 selected transaction at a time.");
+    removeTransactionBtn.setToolTipText("Please click on a transaction and use this button to remove 1 transaction at a time.");
 
     // Create UI components
     JLabel amountLabel = new JLabel("Amount:");
