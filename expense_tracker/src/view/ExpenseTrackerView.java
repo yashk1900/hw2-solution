@@ -27,6 +27,7 @@ public class ExpenseTrackerView extends JFrame {
 
   private JTextField amountFilterField;
   private JButton amountFilterBtn;
+  private JButton clearFilterBtn;
 
   
 
@@ -64,6 +65,7 @@ public class ExpenseTrackerView extends JFrame {
     JLabel amountFilterLabel = new JLabel("Filter by Amount:");
     amountFilterField = new JTextField(10);
     amountFilterBtn = new JButton("Filter by Amount");
+    clearFilterBtn = new JButton("Clear Filters");
   
 
   
@@ -79,6 +81,7 @@ public class ExpenseTrackerView extends JFrame {
     JPanel buttonPanel = new JPanel();
     buttonPanel.add(amountFilterBtn);
     buttonPanel.add(categoryFilterBtn);
+    buttonPanel.add(clearFilterBtn);
   
     // Add panels to frame
     add(inputPanel, BorderLayout.NORTH);
@@ -180,6 +183,11 @@ public class ExpenseTrackerView extends JFrame {
   public JButton getRemoveTransactionBtn() {
     return removeTransactionBtn;
   }
+
+  public JButton getClearFilterButton(){
+    return clearFilterBtn;
+  }
+
   // Get the selected row
   public int getSelectedRowIndex(){
     int selectedIndex = this.transactionsTable.getSelectedRow();
@@ -194,7 +202,7 @@ public class ExpenseTrackerView extends JFrame {
           public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                         boolean hasFocus, int row, int column) {
               Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-              if (rowIndexes.contains(row)) {
+              if (rowIndexes!=null && rowIndexes.contains(row)) {
                   c.setBackground(new Color(173, 255, 168)); // Light green
               } else {
                   c.setBackground(table.getBackground());

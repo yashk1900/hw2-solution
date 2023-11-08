@@ -47,9 +47,14 @@ public class ExpenseTrackerApp {
       int index = view.getSelectedRowIndex();
       boolean removed = controller.removeTransaction(index);
       if (!removed) {
-        JOptionPane.showMessageDialog(view, "Can't remove the selected item");
+        JOptionPane.showMessageDialog(view, "Please select a valid entry to remove");
         view.toFront();
       }
+    });
+
+    view.getClearFilterButton().addActionListener(e->{
+      
+      view.highlightRows(null);
     });
 
       // Add action listener to the "Apply Category Filter" button
