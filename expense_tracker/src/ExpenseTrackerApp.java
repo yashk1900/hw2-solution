@@ -1,9 +1,13 @@
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 import controller.ExpenseTrackerController;
 import model.ExpenseTrackerModel;
+import model.Transaction;
 import view.ExpenseTrackerView;
 import model.Filter.AmountFilter;
 import model.Filter.CategoryFilter;
+import java.util.List;
 
 public class ExpenseTrackerApp {
 
@@ -34,6 +38,16 @@ public class ExpenseTrackerApp {
       
       if (!added) {
         JOptionPane.showMessageDialog(view, "Invalid amount or category entered");
+        view.toFront();
+      }
+    });
+
+    view.getRemoveTransactionBtn().addActionListener(e -> {
+      // GET THE SELECTED DATA
+      int index = view.getSelectedRowIndex();
+      boolean removed = controller.removeTransaction(index);
+      if (!removed) {
+        JOptionPane.showMessageDialog(view, "Can't remove the selected item");
         view.toFront();
       }
     });

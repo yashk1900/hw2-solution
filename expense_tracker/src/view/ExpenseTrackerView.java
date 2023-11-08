@@ -16,6 +16,7 @@ public class ExpenseTrackerView extends JFrame {
 
   private JTable transactionsTable;
   private JButton addTransactionBtn;
+  private JButton removeTransactionBtn;
   private JFormattedTextField amountField;
   private JTextField categoryField;
   private DefaultTableModel model;
@@ -41,6 +42,8 @@ public class ExpenseTrackerView extends JFrame {
     transactionsTable = new JTable(model);
 
     addTransactionBtn = new JButton("Add Transaction");
+    // CAN ADD ? TIP IN THE UI SAYING ONLY 1 TXN DELETION SUPPORTED AT A TIME
+    removeTransactionBtn = new JButton("Remove Selected Transaction");
 
     // Create UI components
     JLabel amountLabel = new JLabel("Amount:");
@@ -71,6 +74,7 @@ public class ExpenseTrackerView extends JFrame {
     inputPanel.add(categoryLabel); 
     inputPanel.add(categoryField);
     inputPanel.add(addTransactionBtn);
+    inputPanel.add(removeTransactionBtn);
 
     JPanel buttonPanel = new JPanel();
     buttonPanel.add(amountFilterBtn);
@@ -173,6 +177,14 @@ public class ExpenseTrackerView extends JFrame {
     return addTransactionBtn;
   }
 
+  public JButton getRemoveTransactionBtn() {
+    return removeTransactionBtn;
+  }
+  // Get the selected row
+  public int getSelectedRowIndex(){
+    int selectedIndex = this.transactionsTable.getSelectedRow();
+    return selectedIndex;
+  }
 
   public void highlightRows(List<Integer> rowIndexes) {
       // The row indices are being used as hashcodes for the transactions.
