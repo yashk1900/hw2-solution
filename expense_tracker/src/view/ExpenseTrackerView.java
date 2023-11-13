@@ -45,7 +45,7 @@ public class ExpenseTrackerView extends JFrame {
     addTransactionBtn = new JButton("Add Transaction");
 
     //UI remove button
-    removeTransactionBtn = new JButton("Remove Selected Transaction");
+    removeTransactionBtn = new JButton("Remove Transaction");
     removeTransactionBtn.setToolTipText("Please click on a transaction and use this button to remove 1 transaction at a time.");
 
     // Create UI components
@@ -185,10 +185,11 @@ public class ExpenseTrackerView extends JFrame {
   public JButton getRemoveTransactionBtn() {
     return removeTransactionBtn;
   }
-
+  
+  /*
   public JButton getClearFilterButton(){
     return clearFilterBtn;
-  }
+  }*/
 
   // Get the selected row
   public int getSelectedRowIndex(){

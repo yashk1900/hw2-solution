@@ -51,9 +51,9 @@ public class ExpenseTrackerApp {
     });
 
     //Add filter clear/reset functionality to 'clear filter' button
-    view.getClearFilterButton().addActionListener(e->{
+    /*view.getClearFilterButton().addActionListener(e->{
       view.highlightRows(null);
-    });
+    });*/
 
       // Add action listener to the "Apply Category Filter" button
     view.addApplyCategoryFilterListener(e -> {
