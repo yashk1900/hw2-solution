@@ -127,7 +127,7 @@ public class TestExample {
     
     //1
     @Test
-    public void testAddTransactionSucceedsView() {
+    public void testAddTransactionSucceeds_View() {
 
         // Pre-condition: List of transactions is empty
         List<Transaction> transactions = model.getTransactions();
@@ -248,6 +248,16 @@ public class TestExample {
         for (Transaction transaction : filteredTransactions){
             assertEquals(amount1, transaction.getAmount(), 0.01);
         }
+
+        controller.applyFilter();
+
+        JTable table = view.getTransactionsTable();
+
+        //Checking that the first two transactions are highlighted and the 3rd one is not
+        assertEquals(new Color(173, 255, 168), table.prepareRenderer(view.getTransactionsTable().getCellRenderer(0, 0), 0, 0).getBackground());
+        assertEquals(new Color(173, 255, 168), table.prepareRenderer(view.getTransactionsTable().getCellRenderer(1, 0), 1, 0).getBackground());
+        assertNotEquals(new Color(173, 255, 168), table.prepareRenderer(view.getTransactionsTable().getCellRenderer(2, 0), 2, 0).getBackground());
+
     }
 
     //// 4
@@ -281,6 +291,15 @@ public class TestExample {
         for (Transaction transaction : filteredTransactions){
             assertEquals(category3, transaction.getCategory());
         }
+
+        controller.applyFilter();
+
+        JTable table = view.getTransactionsTable();
+
+        //Checking that the last two transactions are highlighted and the 1st one is not
+        assertNotEquals(new Color(173, 255, 168), table.prepareRenderer(view.getTransactionsTable().getCellRenderer(0, 0), 0, 0).getBackground());
+        assertEquals(new Color(173, 255, 168), table.prepareRenderer(view.getTransactionsTable().getCellRenderer(1, 0), 1, 0).getBackground());
+        assertEquals(new Color(173, 255, 168), table.prepareRenderer(view.getTransactionsTable().getCellRenderer(2, 0), 2, 0).getBackground());
     }
 
     //// 5
@@ -303,6 +322,7 @@ public class TestExample {
 
     }
 
+    //// 6
     @Test
     public void testRemoveTransactionSuccess_Undo() {
         // Pre-condition: List of transactions is empty
