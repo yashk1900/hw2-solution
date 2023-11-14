@@ -152,4 +152,73 @@ public class TestExample {
         assertEquals(amount, (double)view.getTableModel().getValueAt(1, 3), 0.01);
     }
 
+    //2
+    @Test
+    public void testInvalidInputHandling(){
+
+        //////////// Scenario 1
+        // Pre-condition: List of transactions is empty
+        assertEquals(0, model.getTransactions().size());
+        
+        // Attempting to add a transaction with an invalid amount
+        double invalidAmount = -10.0; // Invalid amount
+        String Category = "food";
+        
+        // Attempt to add an invalid transaction
+        boolean added = controller.addTransaction(invalidAmount, Category);
+        
+        // Check that the transaction was not added
+        assertEquals(0, model.getTransactions().size());
+        assertEquals(0, getTotalCost(), 0.01);
+        
+        // Check that the addition was unsuccessful
+        assertFalse(added);
+ 
+        //////////// Scenario 2
+        // Attempt to add a transaction with an invalid category
+        double Amount = 10.0;
+        String invalidCategory = "foods";
+        
+        // Attempt to add an invalid transaction
+        added = controller.addTransaction(Amount, invalidCategory);
+        
+        // Check that the transaction was not added
+        assertEquals(0, model.getTransactions().size());
+        assertEquals(0, getTotalCost(), 0.01);
+        
+        // Check that the addition was unsuccessful
+        assertFalse(added);
+        
+        //////////// Scenario 3
+        //Reviewing via view for error messages
+        JFormattedTextField textField = new JFormattedTextField();
+        textField.setValue("100");
+        view.setAmountField(textField);
+ 
+        JTextField categoryField = new JTextField();
+        categoryField.setText("foods");
+        view.setCategoryField(categoryField);
+        
+        //jOptionPane is not showing before adding transaction
+        assertFalse(jOptionPane.isShowing());
+        
+        //Attempting to add transaction on view
+        view.getAddTransactionBtn().doClick();
+ 
+        //jOptionPane view after adding
+        assertTrue(jOptionPane.isShowing());
+ 
+        //jOptionPane message check
+        assertEquals("Invalid amount or category entered", jOptionPane.getMessage());
+ 
+        //jOptionPane message type check
+        assertEquals(jOptionPane.ERROR_MESSAGE, jOptionPane.getMessageType());
+ 
+        //no transaction added
+        assertEquals(0, model.getTransactions().size());
+ 
+        // Checkung that the total amount is still 0
+        assertEquals(0, getTotalCost(), 0.01);
+    }
+
 }
