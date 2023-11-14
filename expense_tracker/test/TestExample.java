@@ -285,7 +285,7 @@ public class TestExample {
 
     //// 5
     @Test
-    public void testInvalidRemoveTransaction(){
+    public void testInvalidRemoveTransaction_Undo(){
 
         //jOptionPane not showing before clicking on "remove transaction"
         assertFalse(jOptionPane.isShowing());
@@ -301,6 +301,45 @@ public class TestExample {
         //jOptionPane message type check -- Error
         assertEquals(jOptionPane.ERROR_MESSAGE, jOptionPane.getMessageType());
 
-    } 
+    }
+
+    @Test
+    public void testRemoveTransactionSuccess_Undo() {
+        // Pre-condition: List of transactions is empty
+        assertEquals(0, model.getTransactions().size());
+    
+        // Perform the action: Add transactions to UI
+        double amount = 100.0;
+        String category = "food";
+        assertTrue(controller.addTransaction(amount, category));
+    
+        amount = 100.0;
+        category = "bills";
+        assertTrue(controller.addTransaction(amount, category));
+    
+        amount = 200.0;
+        category = "bills";
+        assertTrue(controller.addTransaction(amount, category));
+    
+        //Total transactions check
+        assertEquals(3, model.getTransactions().size());
+    
+        //Total Cost check
+        assertEquals(400, (double)view.getTableModel().getValueAt(3, 3), 0.01);
+
+        // Perform the action: Undo the transaction......removing the transaction with food category [index 0]
+        controller.removeTransaction(0);
+
+        //All remaining transactions are of bills category
+        for (Transaction transaction : model.getTransactions()){
+            assertEquals("bills", transaction.getCategory());
+        }
+    
+        //Transactions Left
+        assertEquals(2, model.getTransactions().size());
+    
+        //Updated total cost
+        assertEquals(300, (double)view.getTableModel().getValueAt(2, 3), 0.01);
+    }
 
 }
