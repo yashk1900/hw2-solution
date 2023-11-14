@@ -1,8 +1,4 @@
 // package test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 import java.util.Date;
 import java.util.List;
 
@@ -219,6 +215,72 @@ public class TestExample {
  
         // Checkung that the total amount is still 0
         assertEquals(0, getTotalCost(), 0.01);
+    }
+
+    //// 3
+    @Test
+    public void testAmountFilterTransaction(){
+        
+        // Pre-condition: List of transactions is empty
+        assertEquals(0, model.getTransactions().size());
+
+        // Perform the action: Add transactions
+        double amount1 = 100.0;
+        String category1 = "food";
+        assertTrue(controller.addTransaction(amount1, category1));
+
+        double amount2 = 100.0;
+        String category2 = "food";
+        assertTrue(controller.addTransaction(amount2, category2));
+
+        double amount3 = 200.0;
+        String category3 = "bills";
+        assertTrue(controller.addTransaction(amount3, category3));
+
+        //Applying filter
+        AmountFilter amountFilter = new AmountFilter(amount1);
+        controller.setFilter(amountFilter);
+        List<Transaction> filteredTransactions = amountFilter.filter(model.getTransactions());
+
+        //check that correct filtered transactions returned
+        assertEquals(2, filteredTransactions.size());
+
+        for (Transaction transaction : filteredTransactions){
+            assertEquals(amount1, transaction.getAmount(), 0.01);
+        }
+    }
+
+    //// 4
+    @Test
+    public void testCategoryFilterTransaction(){
+        
+        // Pre-condition: List of transactions is empty
+        assertEquals(0, model.getTransactions().size());
+
+        // Perform the action: Add transactions
+        double amount1 = 100.0;
+        String category1 = "food";
+        assertTrue(controller.addTransaction(amount1, category1));
+
+        double amount2 = 100.0;
+        String category2 = "bills";
+        assertTrue(controller.addTransaction(amount2, category2));
+
+        double amount3 = 200.0;
+        String category3 = "bills";
+        assertTrue(controller.addTransaction(amount3, category3));
+
+        //Applying filter
+        CategoryFilter categoryFilter = new CategoryFilter(category3);
+        controller.setFilter(categoryFilter);
+        List<Transaction> filteredTransactions = categoryFilter.filter(model.getTransactions());
+
+        //check that correct filtered transactions returned
+        assertEquals(2, filteredTransactions.size());
+
+        for (Transaction transaction : filteredTransactions){
+            assertEquals(category3, transaction.getCategory());
+        }
     }
 
 }
