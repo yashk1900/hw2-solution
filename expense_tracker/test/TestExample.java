@@ -283,4 +283,24 @@ public class TestExample {
         }
     }
 
+    //// 5
+    @Test
+    public void testInvalidRemoveTransaction(){
+
+        //jOptionPane not showing before clicking on "remove transaction"
+        assertFalse(jOptionPane.isShowing());
+
+        view.getRemoveTransactionBtn().doClick();
+
+        //jOptionPane showing after clicking "remove transaction"
+        assertTrue(jOptionPane.isShowing());
+
+        //jOptionPane message wording check
+        assertEquals("Please select a valid entry to remove", jOptionPane.getMessage());
+    
+        //jOptionPane message type check -- Error
+        assertEquals(jOptionPane.ERROR_MESSAGE, jOptionPane.getMessageType());
+
+    } 
+
 }
