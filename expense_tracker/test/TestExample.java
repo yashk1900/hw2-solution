@@ -134,8 +134,8 @@ public class TestExample {
         assertEquals(0, transactions.size());
 
         // Perform the action: Add a transaction
-        double amount = 100.0;
-        String category = "bills";
+        double amount = 50.0;
+        String category = "food";
         assertTrue(controller.addTransaction(amount, category));
 
         // Post-condition: List of transactions contains only : 1 transaction row and 1 sum total row
